@@ -1,0 +1,4 @@
+- [x] Add missing dependencies to package.json: jspdf, jspdf-autotable, xlsx
+- [x] Add type definitions to package.json: @types/jspdf, @types/xlsx
+- [x] Run npm install to install the new dependencies
+- [x] Verify no compilation errors by running lint or dev server

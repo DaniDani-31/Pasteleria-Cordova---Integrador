@@ -1,0 +1,52 @@
+
+# Credenciales y variables de entorno
+.env
+.env.*
+!.env.example
+**/application-local.properties
+**/application-local.yml
+
+# Next.js
+**/node_modules/
+**/.next/
+**/out/
+**/next-env.d.ts
+**/tsconfig.tsbuildinfo
+
+# Java / Maven
+**/target/
+*.class
+*.jar
+*.war
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/.venv/
+**/venv/
+**/env/
+
+# Editores
+.vscode/
+**/.vscode/
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+**/logs/
+
+# Historial anterior de Git
+.git-backup/
+
+# Archivos temporales de compilacion
+backend/compile_output*.txt
+backend/output.txt
+
+# Imagenes con datos de pago personales
+pasteleria-cordova/public/Plin_sebas.png
+pasteleria-cordova/public/yape_daniel.jpg
