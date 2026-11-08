@@ -1,4 +1,7 @@
+
 package com.pastelerias.security;
+
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,12 +34,8 @@ public class SecurityConfig {
                                 "/api/clientes/registrar-admin",
                                 "/api/reportes/**",
                                 "/api/recetas/**",
-
-                                // Gestión de inventario y mermas
                                 "/api/insumos/**",
                                 "/api/mermas/**",
-
-                                // Endpoints de Machine Learning
                                 "/api/ml/**",
                                 "/error",
                                 "/")
@@ -51,15 +50,28 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
+
+        config.setAllowedOrigins(List.of(
+                "http://localhost:3000",
+                "https://pasteleria-cordova-integrador.vercel.app"));
+
+        config.setAllowedMethods(List.of(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH",
+                "OPTIONS"));
+
+        config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
         source.registerCorsConfiguration("/**", config);
+
         return source;
     }
 }
