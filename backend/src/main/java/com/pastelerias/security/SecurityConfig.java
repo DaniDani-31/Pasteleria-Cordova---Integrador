@@ -53,9 +53,10 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of(
+        config.setAllowedOriginPatterns(List.of(
                 "http://localhost:3000",
-                "https://pasteleria-cordova-integrador.vercel.app"));
+                "https://pasteleria-cordova-integrador.vercel.app",
+                "https://pasteleria-cordova-integrador-*.danidani-31s-projects.vercel.app"));
 
         config.setAllowedMethods(List.of(
                 "GET",
