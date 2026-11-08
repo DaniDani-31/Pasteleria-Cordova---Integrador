@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API, ML_API } from "@/lib/api";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -58,7 +59,7 @@ export default function StockPage() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:8080/api/productos");
+      const response = await fetch(`${API}/productos`);
 
       if (!response.ok) {
         throw new Error("No se pudieron cargar los productos");
@@ -88,14 +89,14 @@ export default function StockPage() {
         listaProductos.map(async (producto) => {
           try {
             // -------------------------------------------------
-            // 1. Obtener predicción desde Python
+            // 1. Obtener predicciÃ³n desde Python
             const prediccionResponse = await fetch(
-              `http://localhost:8000/ventas/prediccion/${producto.idProducto}`,
+              `${ML_API}/ventas/prediccion/${producto.idProducto}`,
             );
 
             if (!prediccionResponse.ok) {
               console.warn(
-                `No se pudo obtener predicción para ${producto.nombreProducto}`,
+                `No se pudo obtener predicciÃ³n para ${producto.nombreProducto}`,
               );
               return;
             }
@@ -107,7 +108,7 @@ export default function StockPage() {
             // -------------------------------------------------
 
             const inventarioResponse = await fetch(
-              `http://localhost:8080/api/ml/inventario/${producto.idProducto}?demandaPredicha=${prediccion.demandaPredicha}`,
+              `${API}/ml/inventario/${producto.idProducto}?demandaPredicha=${prediccion.demandaPredicha}`,
             );
 
             if (!inventarioResponse.ok) {
@@ -120,16 +121,16 @@ export default function StockPage() {
             const inventario: InventarioML = await inventarioResponse.json();
 
             // -------------------------------------------------
-            // 3. Obtener optimización de reposición
+            // 3. Obtener optimizaciÃ³n de reposiciÃ³n
             // -------------------------------------------------
 
             const optimizacionResponse = await fetch(
-              `http://localhost:8080/api/ml/optimizacion/${producto.idProducto}?demandaPredicha=${prediccion.demandaPredicha}&stockSeguridad=2`,
+              `${API}/ml/optimizacion/${producto.idProducto}?demandaPredicha=${prediccion.demandaPredicha}&stockSeguridad=2`,
             );
 
             if (!optimizacionResponse.ok) {
               console.warn(
-                `No se pudo calcular reposición para ${producto.nombreProducto}`,
+                `No se pudo calcular reposiciÃ³n para ${producto.nombreProducto}`,
               );
               return;
             }
@@ -138,7 +139,7 @@ export default function StockPage() {
               await optimizacionResponse.json();
 
             // -------------------------------------------------
-            // Guardar análisis
+            // Guardar anÃ¡lisis
             // -------------------------------------------------
 
             resultados[producto.idProducto] = {
@@ -157,20 +158,20 @@ export default function StockPage() {
 
       setAnalisisML(resultados);
     } catch (error) {
-      console.error("Error al cargar análisis ML:", error);
+      console.error("Error al cargar anÃ¡lisis ML:", error);
     } finally {
       setLoadingML(false);
     }
   };
 
   // =========================================================
-  // CARGAR INFORMACIÓN INICIAL
+  // CARGAR INFORMACIÃ“N INICIAL
   // =========================================================
 
   useEffect(() => {
     const cargarTodo = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/productos");
+        const response = await fetch(`${API}/productos`);
 
         const data = await response.json();
 
@@ -178,7 +179,7 @@ export default function StockPage() {
 
         await cargarAnalisisML(data);
       } catch (error) {
-        console.error("Error al cargar información:", error);
+        console.error("Error al cargar informaciÃ³n:", error);
       } finally {
         setLoading(false);
       }
@@ -228,7 +229,7 @@ export default function StockPage() {
   const actualizarStock = async (producto: Producto) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/productos/actualizar-stock/${producto.idProducto}`,
+        `${API}/productos/actualizar-stock/${producto.idProducto}`,
         {
           method: "PUT",
           headers: {
@@ -241,7 +242,7 @@ export default function StockPage() {
       if (response.ok) {
         alert(`Stock actualizado para ${producto.nombreProducto}`);
 
-        // Volver a calcular el análisis ML
+        // Volver a calcular el anÃ¡lisis ML
         await cargarAnalisisML(productos);
       } else {
         alert("Error al actualizar stock");
@@ -281,7 +282,7 @@ export default function StockPage() {
   if (loading) {
     return (
       <div className="p-6">
-        <h1 className="text-3xl font-bold mb-6">📦 Control de Stock</h1>
+        <h1 className="text-3xl font-bold mb-6">ðŸ“¦ Control de Stock</h1>
 
         <p className="text-lg">Cargando productos...</p>
       </div>
@@ -304,10 +305,10 @@ export default function StockPage() {
       ===================================================== */}
 
       <div className="mb-6">
-        <h1 className="text-3xl font-bold">📦 Control de Stock</h1>
+        <h1 className="text-3xl font-bold">ðŸ“¦ Control de Stock</h1>
 
         <p className="text-gray-600 mt-1">
-          Gestión de inventario y análisis inteligente
+          GestiÃ³n de inventario y anÃ¡lisis inteligente
         </p>
       </div>
 
@@ -359,7 +360,7 @@ export default function StockPage() {
       {loadingML && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <p className="text-blue-700">
-            🤖 Analizando demanda e inventario con Machine Learning...
+            ðŸ¤– Analizando demanda e inventario con Machine Learning...
           </p>
         </div>
       )}
@@ -384,7 +385,7 @@ export default function StockPage() {
 
               <th className="p-3 border">Estado</th>
 
-              <th className="p-3 border">Reposición sugerida</th>
+              <th className="p-3 border">ReposiciÃ³n sugerida</th>
 
               <th className="p-3 border">Actualizar</th>
             </tr>
@@ -419,14 +420,14 @@ export default function StockPage() {
                         onClick={() => disminuir(producto.idProducto)}
                         className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
                       >
-                        ➖
+                        âž–
                       </button>
 
                       <button
                         onClick={() => aumentar(producto.idProducto)}
                         className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
                       >
-                        ➕
+                        âž•
                       </button>
                     </div>
                   </td>
@@ -459,7 +460,7 @@ export default function StockPage() {
                         </span>
 
                         <p className="text-xs text-gray-500">
-                          relación stock/demanda
+                          relaciÃ³n stock/demanda
                         </p>
                       </div>
                     ) : (
@@ -539,9 +540,10 @@ export default function StockPage() {
           onClick={() => router.push("/")}
           className="text-primary border-primary hover:bg-primary hover:text-white transition"
         >
-          ⬅️ Volver al inicio
+          â¬…ï¸ Volver al inicio
         </Button>
       </div>
     </div>
   );
 }
+

@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -31,7 +32,7 @@ export default function ComprasTotalesPage() {
         // ============================
         // COMPRAS
         // ============================
-        const resCompras = await fetch("http://localhost:8080/api/compras");
+        const resCompras = await fetch(`${API}/compras`);
 
         const dataCompras = await resCompras.json();
 
@@ -65,7 +66,7 @@ export default function ComprasTotalesPage() {
   ) => {
     try {
       const res = await fetch(
-        `http://localhost:8080/api/compras/${idCompra}/estado`,
+        `${API}/compras/${idCompra}/estado`,
         {
           method: "PUT",
           headers: {
@@ -85,7 +86,7 @@ export default function ComprasTotalesPage() {
         return;
       }
 
-      // Actualizar la tabla sin recargar la página
+      // Actualizar la tabla sin recargar la pÃ¡gina
       setCompras((prev) =>
         prev.map((c) =>
           String(c.idCompra) === String(idCompra)
@@ -97,7 +98,7 @@ export default function ComprasTotalesPage() {
         ),
       );
 
-      alert(`La compra #${idCompra} ahora está en estado "${nuevoEstado}".`);
+      alert(`La compra #${idCompra} ahora estÃ¡ en estado "${nuevoEstado}".`);
     } catch (error) {
       console.error("Error actualizando estado:", error);
 
@@ -128,21 +129,21 @@ export default function ComprasTotalesPage() {
   };
 
   // ============================
-  // TEXTO DEL BOTÓN
+  // TEXTO DEL BOTÃ“N
   // ============================
   const textoSiguienteEstado = (estado: string) => {
     switch (estado) {
       case "Pendiente":
-        return "✓ Confirmar pedido";
+        return "âœ“ Confirmar pedido";
 
       case "Confirmado":
-        return "👨‍🍳 Iniciar preparación";
+        return "ðŸ‘¨â€ðŸ³ Iniciar preparaciÃ³n";
 
       case "Preparando":
-        return "📦 Marcar como listo";
+        return "ðŸ“¦ Marcar como listo";
 
       case "Listo":
-        return "🎉 Marcar entregado";
+        return "ðŸŽ‰ Marcar entregado";
 
       default:
         return "";
@@ -247,35 +248,35 @@ export default function ComprasTotalesPage() {
   return (
     <div className="p-6">
       {/* ============================
-          TÍTULO
+          TÃTULO
       ============================ */}
-      <h1 className="text-3xl font-bold mb-5">📊 Compras Totales</h1>
+      <h1 className="text-3xl font-bold mb-5">ðŸ“Š Compras Totales</h1>
 
       {/* ============================
-          ESTADÍSTICAS
+          ESTADÃSTICAS
       ============================ */}
       <div className="flex gap-6 bg-gray-100 p-4 rounded-lg shadow mb-5">
         <div className="text-lg font-semibold">
-          🧾 Total de compras registradas:{" "}
+          ðŸ§¾ Total de compras registradas:{" "}
           <span className="text-blue-700">{totalCompras}</span>
         </div>
 
         <div className="text-lg font-semibold">
-          💰 Suma total de compras:{" "}
+          ðŸ’° Suma total de compras:{" "}
           <span className="text-green-700">S/ {sumaTotal.toFixed(2)}</span>
         </div>
       </div>
 
       {/* ============================
-          EXPORTACIÓN
+          EXPORTACIÃ“N
       ============================ */}
       <div className="flex gap-4 mb-5">
         <Button onClick={exportarExcel} className="bg-green-700 text-white">
-          📗 Exportar Excel
+          ðŸ“— Exportar Excel
         </Button>
 
         <Button onClick={exportarPDF} className="bg-red-700 text-white">
-          📕 Exportar PDF
+          ðŸ“• Exportar PDF
         </Button>
       </div>
 
@@ -347,7 +348,7 @@ export default function ComprasTotalesPage() {
                         <button
                           onClick={() => {
                             const confirmar = window.confirm(
-                              `¿Deseas cancelar la compra #${c.idCompra}?`,
+                              `Â¿Deseas cancelar la compra #${c.idCompra}?`,
                             );
 
                             if (confirmar) {
@@ -356,7 +357,7 @@ export default function ComprasTotalesPage() {
                           }}
                           className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
                         >
-                          ❌ Cancelar
+                          âŒ Cancelar
                         </button>
                       )}
                     </div>
@@ -376,10 +377,11 @@ export default function ComprasTotalesPage() {
             onClick={() => router.push("/")}
             className="text-primary border-primary hover:bg-primary hover:text-white transition"
           >
-            ⬅️ Volver al inicio
+            â¬…ï¸ Volver al inicio
           </Button>
         </div>
       </div>
     </div>
   );
 }
+

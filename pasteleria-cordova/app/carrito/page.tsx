@@ -1,11 +1,12 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 import { Header } from "@/components/header";
 import { useRouter } from "next/navigation";
 
-// Interfaz del ítem del carrito
+// Interfaz del Ã­tem del carrito
 interface CartItem {
   idProducto: number;
   name: string;
@@ -51,7 +52,7 @@ export default function CarritoPage() {
   const handleProcessPurchase = async (method: string) => {
     const storedUser = localStorage.getItem("usuario");
     if (!storedUser) {
-      alert("Debes iniciar sesión para completar la compra.");
+      alert("Debes iniciar sesiÃ³n para completar la compra.");
       router.push("/login");
       return;
     }
@@ -65,15 +66,15 @@ export default function CarritoPage() {
     }
 
     if (cart.length === 0) {
-      alert("El carrito está vacío.");
+      alert("El carrito estÃ¡ vacÃ­o.");
       return;
     }
 
     try {
-      // 🔹 Mapear detalles correctamente para backend con limpieza de precio
+      // ðŸ”¹ Mapear detalles correctamente para backend con limpieza de precio
       const detalles = cart.map((item) => {
         if (!item.idProducto) {
-          throw new Error(`El producto "${item.name}" no tiene un ID válido.`);
+          throw new Error(`El producto "${item.name}" no tiene un ID vÃ¡lido.`);
         }
 
         const cleanedPrice = item.price
@@ -85,7 +86,7 @@ export default function CarritoPage() {
         const numericPrice = parseFloat(cleanedPrice);
         if (isNaN(numericPrice)) {
           throw new Error(
-            `El producto "${item.name}" tiene un precio inválido.`,
+            `El producto "${item.name}" tiene un precio invÃ¡lido.`,
           );
         }
 
@@ -97,10 +98,10 @@ export default function CarritoPage() {
       });
 
       if (detalles.length === 0) {
-        throw new Error("No hay detalles de compra válidos.");
+        throw new Error("No hay detalles de compra vÃ¡lidos.");
       }
 
-      // 🔹 Crear objeto CompraRequest compatible con backend
+      // ðŸ”¹ Crear objeto CompraRequest compatible con backend
       const compra = {
         idCliente: idCliente,
         estado: "Pendiente",
@@ -111,7 +112,7 @@ export default function CarritoPage() {
 
       setIsProcessing(true);
 
-      const res = await fetch("http://localhost:8080/api/compras", {
+      const res = await fetch(`${API}/compras`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(compra),
@@ -125,12 +126,12 @@ export default function CarritoPage() {
 
       clearCart(true);
       alert(
-        `✅ Compra realizada con éxito usando ${method}. Total: S/ ${total}`,
+        `âœ… Compra realizada con Ã©xito usando ${method}. Total: S/ ${total}`,
       );
       router.push("/historial");
     } catch (error: any) {
       console.error("Error al procesar compra:", error);
-      alert(`❌ Error al procesar la compra: ${error.message}`);
+      alert(`âŒ Error al procesar la compra: ${error.message}`);
     } finally {
       setIsProcessing(false);
       setShowPaymentOptions(false);
@@ -151,7 +152,7 @@ export default function CarritoPage() {
           <h2 className="font-bold mb-4">Datos de la Tarjeta</h2>
           <input
             type="text"
-            placeholder="Número de Tarjeta"
+            placeholder="NÃºmero de Tarjeta"
             required
             maxLength={16}
             className="w-full border p-2 rounded"
@@ -190,7 +191,7 @@ export default function CarritoPage() {
             onClick={() => setSelectedPayment("none")}
             className="mt-3 text-sm text-gray-600 underline w-full"
           >
-            ← Volver a métodos
+            â† Volver a mÃ©todos
           </button>
         </form>
       );
@@ -214,7 +215,7 @@ export default function CarritoPage() {
             </p>
             <p className="text-2xl font-bold text-green-700">{numeroEmpresa}</p>
             <p className="text-xs text-gray-500 mt-1">
-              Titular: Pastelerías Córdova S.A.C.
+              Titular: PastelerÃ­as CÃ³rdova S.A.C.
             </p>
             <img
               src={
@@ -239,13 +240,13 @@ export default function CarritoPage() {
                 : "bg-blue-600 hover:bg-blue-700"
             } disabled:opacity-50`}
           >
-            {isProcessing ? "Confirmando..." : "✅ Confirmar Pago"}
+            {isProcessing ? "Confirmando..." : "âœ… Confirmar Pago"}
           </button>
           <button
             onClick={() => setSelectedPayment("none")}
             className="mt-3 text-sm text-gray-600 underline w-full"
           >
-            ← Volver a métodos
+            â† Volver a mÃ©todos
           </button>
         </div>
       );
@@ -253,24 +254,24 @@ export default function CarritoPage() {
 
     return (
       <div className="flex flex-col gap-3">
-        <h2 className="font-bold mb-2">Elige tu método de pago</h2>
+        <h2 className="font-bold mb-2">Elige tu mÃ©todo de pago</h2>
         <button
           onClick={() => setSelectedPayment("tarjeta")}
           className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
         >
-          💳 Tarjeta de Crédito/Débito
+          ðŸ’³ Tarjeta de CrÃ©dito/DÃ©bito
         </button>
         <button
           onClick={() => setSelectedPayment("yape")}
           className="bg-purple-500 text-white py-2 rounded hover:bg-purple-600"
         >
-          📱 Yape
+          ðŸ“± Yape
         </button>
         <button
           onClick={() => setSelectedPayment("plin")}
           className="bg-sky-500 text-white py-2 rounded hover:bg-sky-600"
         >
-          📱 Plin
+          ðŸ“± Plin
         </button>
         <button
           onClick={() => {
@@ -289,10 +290,10 @@ export default function CarritoPage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="flex flex-col justify-center items-center text-center pt-28 pb-20 container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-6">🛒 Tu Carrito</h1>
+        <h1 className="text-3xl font-bold mb-6">ðŸ›’ Tu Carrito</h1>
         {cart.length === 0 ? (
           <div className="flex flex-col items-center justify-center bg-white p-8 rounded-xl shadow-md max-w-md w-full">
-            <p className="text-gray-600 text-lg mb-6">Tu carrito está vacío.</p>
+            <p className="text-gray-600 text-lg mb-6">Tu carrito estÃ¡ vacÃ­o.</p>
             <button
               onClick={() => {
                 router.push("/");
@@ -375,7 +376,7 @@ export default function CarritoPage() {
                 }}
                 className="text-pink-600 hover:text-pink-800 underline text-sm"
               >
-                ← Volver al inicio
+                â† Volver al inicio
               </button>
             </div>
           </div>
@@ -384,3 +385,4 @@ export default function CarritoPage() {
     </div>
   );
 }
+

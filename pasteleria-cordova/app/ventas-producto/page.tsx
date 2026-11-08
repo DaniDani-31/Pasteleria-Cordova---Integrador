@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API, ML_API } from "@/lib/api";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -39,7 +40,7 @@ export default function VentasPorProductoPage() {
         setError(null);
 
         const res = await fetch(
-          "http://localhost:8080/api/compras/ventas-producto",
+          `${API}/compras/ventas-producto`,
         );
 
         if (!res.ok) {
@@ -50,7 +51,7 @@ export default function VentasPorProductoPage() {
 
         setVentas(data);
 
-        // Después de obtener las ventas,
+        // DespuÃ©s de obtener las ventas,
         // consultar las predicciones de ML
         await cargarPredicciones(data);
       } catch (err: any) {
@@ -77,12 +78,12 @@ export default function VentasPorProductoPage() {
         productos.map(async (producto) => {
           try {
             const response = await fetch(
-              `http://localhost:8000/ventas/prediccion/${producto.idProducto}`,
+              `${ML_API}/ventas/prediccion/${producto.idProducto}`,
             );
 
             if (!response.ok) {
               console.warn(
-                `No se pudo obtener predicción para ${producto.nombreProducto}`,
+                `No se pudo obtener predicciÃ³n para ${producto.nombreProducto}`,
               );
               return;
             }
@@ -92,7 +93,7 @@ export default function VentasPorProductoPage() {
             resultados[producto.idProducto] = data;
           } catch (error) {
             console.error(
-              `Error en predicción de ${producto.nombreProducto}:`,
+              `Error en predicciÃ³n de ${producto.nombreProducto}:`,
               error,
             );
           }
@@ -139,7 +140,7 @@ export default function VentasPorProductoPage() {
   const exportPDF = async () => {
     try {
       const res = await fetch(
-        "http://localhost:8080/api/reportes/ventas-producto/pdf",
+        `${API}/reportes/ventas-producto/pdf`,
       );
 
       if (!res.ok) {
@@ -167,7 +168,7 @@ export default function VentasPorProductoPage() {
   const exportExcel = async () => {
     try {
       const res = await fetch(
-        "http://localhost:8080/api/reportes/ventas-producto/excel",
+        `${API}/reportes/ventas-producto/excel`,
       );
 
       if (!res.ok) {
@@ -216,10 +217,10 @@ export default function VentasPorProductoPage() {
         =================================================== */}
 
         <div className="bg-white p-6 rounded-xl shadow mb-6">
-          <h1 className="text-3xl font-bold mb-2">📈 Ventas por Producto</h1>
+          <h1 className="text-3xl font-bold mb-2">ðŸ“ˆ Ventas por Producto</h1>
 
           <p className="text-gray-600">
-            Análisis de ventas y estimación de demanda
+            AnÃ¡lisis de ventas y estimaciÃ³n de demanda
           </p>
         </div>
 
@@ -262,13 +263,13 @@ export default function VentasPorProductoPage() {
         {loadingML && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
             <p className="text-blue-700">
-              🤖 Calculando demanda estimada mediante Machine Learning...
+              ðŸ¤– Calculando demanda estimada mediante Machine Learning...
             </p>
           </div>
         )}
 
         {/* ===================================================
-            BOTONES DE EXPORTACIÓN
+            BOTONES DE EXPORTACIÃ“N
         =================================================== */}
 
         <div className="bg-white p-5 rounded-xl shadow mb-6">
@@ -277,14 +278,14 @@ export default function VentasPorProductoPage() {
               onClick={exportPDF}
               className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
             >
-              📄 Exportar PDF
+              ðŸ“„ Exportar PDF
             </button>
 
             <button
               onClick={exportExcel}
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
             >
-              📊 Exportar Excel
+              ðŸ“Š Exportar Excel
             </button>
           </div>
         </div>
@@ -318,7 +319,7 @@ export default function VentasPorProductoPage() {
 
                   <th className="border p-3">Nivel de Demanda</th>
 
-                  <th className="border p-3">Fecha de Predicción</th>
+                  <th className="border p-3">Fecha de PredicciÃ³n</th>
                 </tr>
               </thead>
 
@@ -400,10 +401,11 @@ export default function VentasPorProductoPage() {
             onClick={() => router.push("/")}
             className="text-primary border-primary hover:bg-primary hover:text-white transition"
           >
-            ⬅️ Volver al inicio
+            â¬…ï¸ Volver al inicio
           </Button>
         </div>
       </div>
     </div>
   );
 }
+

@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
-const API = "http://localhost:8080/api";
 
 interface Ingrediente {
   idInsumo: number;
@@ -199,7 +199,7 @@ export default function RecetasPage() {
       setMostrarFormulario(true);
     } catch (err) {
       console.error(err);
-      setError("No se pudo cargar la información para editar.");
+      setError("No se pudo cargar la informaciÃ³n para editar.");
     } finally {
       setCargandoFormulario(false);
     }
@@ -212,7 +212,7 @@ export default function RecetasPage() {
     return productos.filter((producto) => {
       const productoId = Number(producto.idProducto);
 
-      // En edición, permitir el producto de la receta actual.
+      // En ediciÃ³n, permitir el producto de la receta actual.
       if (modoEdicion) {
         return productoId === Number(idProducto);
       }
@@ -343,7 +343,7 @@ export default function RecetasPage() {
       return;
     }
 
-    // Verificación adicional en el frontend.
+    // VerificaciÃ³n adicional en el frontend.
     // No permite registrar otra receta para el mismo producto.
     if (!modoEdicion) {
       const yaTieneReceta = recetas.some(
@@ -357,7 +357,7 @@ export default function RecetasPage() {
     }
 
     if (modoEdicion && idRecetaEditar === null) {
-      setError("No se identificó la receta que deseas actualizar.");
+      setError("No se identificÃ³ la receta que deseas actualizar.");
       return;
     }
 
@@ -405,8 +405,8 @@ export default function RecetasPage() {
 
       setMensaje(
         editando
-          ? "¡Receta actualizada correctamente!"
-          : "¡Receta registrada correctamente!",
+          ? "Â¡Receta actualizada correctamente!"
+          : "Â¡Receta registrada correctamente!",
       );
     } catch (err) {
       console.error("Error al guardar receta:", err);
@@ -414,7 +414,7 @@ export default function RecetasPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Ocurrió un error al guardar la receta.",
+          : "OcurriÃ³ un error al guardar la receta.",
       );
     } finally {
       setGuardando(false);
@@ -441,11 +441,11 @@ export default function RecetasPage() {
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">
-            📖 Gestión de Recetas
+            ðŸ“– GestiÃ³n de Recetas
           </h1>
 
           <p className="mt-1 text-gray-600">
-            Consulta las recetas, ingredientes y costos de producción.
+            Consulta las recetas, ingredientes y costos de producciÃ³n.
           </p>
         </div>
 
@@ -454,7 +454,7 @@ export default function RecetasPage() {
             onClick={() => router.push("/")}
             className="rounded-lg bg-gray-600 px-5 py-2.5 font-semibold text-white hover:bg-gray-700"
           >
-            ← Volver al Inicio
+            â† Volver al Inicio
           </button>
 
           <button
@@ -470,7 +470,7 @@ export default function RecetasPage() {
             disabled={loading}
             className="rounded-lg bg-amber-700 px-5 py-2.5 font-semibold text-white hover:bg-amber-800 disabled:opacity-50"
           >
-            ↻ Actualizar
+            â†» Actualizar
           </button>
         </div>
       </div>
@@ -504,7 +504,7 @@ export default function RecetasPage() {
               onClick={limpiarFormulario}
               className="text-gray-500 hover:text-red-600"
             >
-              ✕ Cerrar
+              âœ• Cerrar
             </button>
           </div>
 
@@ -570,16 +570,16 @@ export default function RecetasPage() {
             </div>
           </div>
 
-          {/* DESCRIPCIÓN */}
+          {/* DESCRIPCIÃ“N */}
           <div className="mb-5">
             <label className="mb-2 block font-semibold text-gray-700">
-              Descripción
+              DescripciÃ³n
             </label>
 
             <textarea
               value={descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
-              placeholder="Descripción de la preparación..."
+              placeholder="DescripciÃ³n de la preparaciÃ³n..."
               rows={2}
               className="w-full rounded-lg border p-3"
             />
@@ -621,7 +621,7 @@ export default function RecetasPage() {
 
                     {insumos.map((insumo) => (
                       <option key={insumo.idInsumo} value={insumo.idInsumo}>
-                        {insumo.nombreInsumo} — Stock: {insumo.stock}{" "}
+                        {insumo.nombreInsumo} â€” Stock: {insumo.stock}{" "}
                         {insumo.unidadMedida}
                       </option>
                     ))}
@@ -655,7 +655,7 @@ export default function RecetasPage() {
                   <input
                     value={ingrediente.unidadMedida}
                     readOnly
-                    placeholder="Automática"
+                    placeholder="AutomÃ¡tica"
                     className="w-full rounded-lg border bg-gray-100 p-2.5"
                   />
                 </div>
@@ -767,7 +767,7 @@ export default function RecetasPage() {
                   </h3>
 
                   <p className="mt-1 text-sm text-gray-500">
-                    {receta.ingredientes.length} ingredientes · Rendimiento:{" "}
+                    {receta.ingredientes.length} ingredientes Â· Rendimiento:{" "}
                     {receta.rendimiento} unidad
                   </p>
                 </div>
@@ -807,7 +807,7 @@ export default function RecetasPage() {
                 disabled={cargandoFormulario}
                 className="mb-4 mt-3 rounded-lg bg-blue-700 px-5 py-2 font-semibold text-white hover:bg-blue-800 disabled:opacity-50"
               >
-                ✏️ Editar receta
+                âœï¸ Editar receta
               </button>
 
               <p className="mb-4 mt-1 text-sm text-gray-500">
@@ -880,14 +880,14 @@ export default function RecetasPage() {
             </div>
           ) : (
             <div className="rounded-xl bg-white p-10 text-center text-gray-500 shadow">
-              <p className="text-4xl">📋</p>
+              <p className="text-4xl">ðŸ“‹</p>
 
               <p className="mt-3 font-semibold">
                 Selecciona una receta del listado
               </p>
 
               <p className="mt-1 text-sm">
-                Aquí podrás consultar sus ingredientes y costos.
+                AquÃ­ podrÃ¡s consultar sus ingredientes y costos.
               </p>
             </div>
           )}
@@ -896,3 +896,5 @@ export default function RecetasPage() {
     </div>
   );
 }
+
+

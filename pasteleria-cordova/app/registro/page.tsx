@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -19,7 +20,7 @@ export default function RegistroPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/clientes/registrar",
+        `${API}/clientes/registrar`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -36,18 +37,18 @@ export default function RegistroPage() {
       try {
         data = await response.json();
       } catch {
-        data = { mensaje: "Respuesta no válida del servidor" };
+        data = { mensaje: "Respuesta no vÃ¡lida del servidor" };
       }
 
       if (response.ok) {
-        alert(data.mensaje || "Registro exitoso ✅");
+        alert(data.mensaje || "Registro exitoso âœ…");
         router.push("/login");
       } else {
-        alert(data.mensaje || "Error al registrar ❌");
+        alert(data.mensaje || "Error al registrar âŒ");
       }
     } catch (error) {
       console.error("Error en el registro:", error);
-      alert("Error al conectar con el servidor ⚠️");
+      alert("Error al conectar con el servidor âš ï¸");
     }
   };
 
@@ -73,7 +74,7 @@ export default function RegistroPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Correo Electrónico:</Label>
+              <Label htmlFor="email">Correo ElectrÃ³nico:</Label>
               <Input
                 id="email"
                 type="email"
@@ -84,7 +85,7 @@ export default function RegistroPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Contraseña:</Label>
+              <Label htmlFor="password">ContraseÃ±a:</Label>
               <Input
                 id="password"
                 type="password"
@@ -115,3 +116,4 @@ export default function RegistroPage() {
     </div>
   );
 }
+

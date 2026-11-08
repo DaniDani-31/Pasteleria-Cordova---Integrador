@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/product-card";
@@ -6,9 +7,6 @@ import { useCart } from "@/context/CartContext";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-
-const API = "http://localhost:8080/api";
-
 interface Producto {
   idProducto: number;
   nombreProducto: string;
@@ -61,7 +59,7 @@ export default function ProductosPage() {
       } catch (err) {
         console.error("Error al cargar productos:", err);
         setError(
-          "No se pudieron cargar los productos. Verifica que el servidor esté activo.",
+          "No se pudieron cargar los productos. Verifica que el servidor estÃ© activo.",
         );
       } finally {
         setLoading(false);
@@ -140,3 +138,7 @@ export default function ProductosPage() {
     </div>
   );
 }
+
+
+
+

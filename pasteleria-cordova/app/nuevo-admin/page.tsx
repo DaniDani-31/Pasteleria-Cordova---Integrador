@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -19,7 +20,7 @@ export default function NuevoAdminPage() {
     setError("");
 
     try {
-      // 🔥 EL ROL 1 SE ASIGNA AUTOMÁTICAMENTE EN EL BACKEND
+      // ðŸ”¥ EL ROL 1 SE ASIGNA AUTOMÃTICAMENTE EN EL BACKEND
       const nuevoAdmin = {
         nombreCompleto,
         correo,
@@ -27,7 +28,7 @@ export default function NuevoAdminPage() {
       };
 
       const res = await fetch(
-        "http://localhost:8080/api/clientes/registrar-admin",
+        `${API}/clientes/registrar-admin`,
         {
           method: "POST",
           headers: {
@@ -38,7 +39,7 @@ export default function NuevoAdminPage() {
       );
 
       if (!res.ok) {
-        // Intentar leer el mensaje de error que envía Spring Boot
+        // Intentar leer el mensaje de error que envÃ­a Spring Boot
         let data;
         try {
           data = await res.json();
@@ -48,7 +49,7 @@ export default function NuevoAdminPage() {
         throw new Error(data.mensaje || "Error al registrar administrador");
       }
 
-      setMensaje("Administrador creado correctamente ✔️");
+      setMensaje("Administrador creado correctamente âœ”ï¸");
       setNombreCompleto("");
       setCorreo("");
       setContrasena("");
@@ -99,7 +100,7 @@ export default function NuevoAdminPage() {
           </div>
 
           <div>
-            <label className="block font-semibold mb-1">Contraseña</label>
+            <label className="block font-semibold mb-1">ContraseÃ±a</label>
             <input
               type="password"
               value={contrasena}
@@ -117,17 +118,18 @@ export default function NuevoAdminPage() {
           </button>
         </form>
 
-        {/* 🔙 Botón Volver al inicio */}
+        {/* ðŸ”™ BotÃ³n Volver al inicio */}
         <div className="flex justify-center mt-8">
           <Button
             variant="outline"
             onClick={() => router.push("/")}
             className="text-primary border-primary hover:bg-primary hover:text-white transition"
           >
-            ⬅️ Volver al inicio
+            â¬…ï¸ Volver al inicio
           </Button>
         </div>
       </div>
     </div>
   );
 }
+

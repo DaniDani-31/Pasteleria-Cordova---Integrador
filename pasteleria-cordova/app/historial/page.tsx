@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import React, { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -16,7 +17,7 @@ interface CompraDTO {
   subtotal: number;
 }
 
-// 🆕 Interfaz para la Compra Agrupada (una entidad Compra con una lista de Detalles)
+// ðŸ†• Interfaz para la Compra Agrupada (una entidad Compra con una lista de Detalles)
 interface CompraAgrupada {
   idCompra: number;
   total: number;
@@ -44,21 +45,21 @@ export default function HistorialComprasPage() {
   const [cargando, setCargando] = useState(true);
   const [errorMensaje, setErrorMensaje] = useState("");
 
-  // Función para obtener los datos del historial de compras detallado
+  // FunciÃ³n para obtener los datos del historial de compras detallado
   const fetchHistorial = useCallback(async (idCliente: number) => {
     setCargando(true);
     setErrorMensaje("");
 
     try {
       const res = await fetch(
-        `http://localhost:8080/api/compras/cliente/${idCliente}/detalles`,
+        `${API}/compras/cliente/${idCliente}/detalles`,
       );
       const data = await res.json();
 
       if (!res.ok) {
         const mensajeError =
           data?.mensaje ||
-          `Error al cargar el historial (Código ${res.status})`;
+          `Error al cargar el historial (CÃ³digo ${res.status})`;
         throw new Error(mensajeError);
       }
 
@@ -97,12 +98,12 @@ export default function HistorialComprasPage() {
       }
     } catch (e) {
       console.error("Error al procesar usuario de localStorage:", e);
-      setErrorMensaje("Error en los datos de la sesión.");
+      setErrorMensaje("Error en los datos de la sesiÃ³n.");
       setCargando(false);
     }
   }, [router, fetchHistorial]);
 
-  // 🆕 FUNCIÓN DE AGRUPACIÓN: Transforma la lista plana de DTOs en compras agrupadas
+  // ðŸ†• FUNCIÃ“N DE AGRUPACIÃ“N: Transforma la lista plana de DTOs en compras agrupadas
   const agruparCompras = (detallesPlanos: CompraDTO[]): CompraAgrupada[] => {
     const comprasMap = new Map<number, CompraAgrupada>();
 
@@ -154,7 +155,7 @@ export default function HistorialComprasPage() {
       ) : detalles.length === 0 ? (
         <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-xl text-center">
           <p className="text-lg text-gray-500">
-            No tienes compras registradas aún.
+            No tienes compras registradas aÃºn.
           </p>
           <Button onClick={() => router.push("/")} className="mt-6">
             Comenzar a comprar
@@ -258,16 +259,17 @@ export default function HistorialComprasPage() {
         </div>
       )}
 
-      {/* 🔙 Botón Volver al inicio */}
+      {/* ðŸ”™ BotÃ³n Volver al inicio */}
       <div className="flex justify-center mt-8">
         <Button
           variant="outline"
           onClick={() => router.push("/")}
           className="text-primary border-primary hover:bg-primary hover:text-white transition"
         >
-          ⬅️ Volver al inicio
+          â¬…ï¸ Volver al inicio
         </Button>
       </div>
     </div>
   );
 }
+

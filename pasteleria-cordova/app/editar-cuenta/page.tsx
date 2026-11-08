@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -7,7 +8,7 @@ interface ClienteDTO {
   idCliente: number;
   nombreCompleto: string;
   correo: string;
-  // Solo necesitamos la contraseña para enviarla, no la recibimos del backend
+  // Solo necesitamos la contraseÃ±a para enviarla, no la recibimos del backend
   contrasena?: string | null;
 }
 
@@ -23,10 +24,10 @@ export default function EditarCuentaPage() {
     const storedUser = localStorage.getItem("usuario");
     if (!storedUser) {
       setErrorMensaje(
-        "No se encontró sesión activa. Redirigiendo a inicio de sesión..."
+        "No se encontrÃ³ sesiÃ³n activa. Redirigiendo a inicio de sesiÃ³n..."
       );
       setCargando(false);
-      // Redirigir después de un breve retraso
+      // Redirigir despuÃ©s de un breve retraso
       const timer = setTimeout(() => router.push("/login"), 3000);
       return () => clearTimeout(timer);
     }
@@ -37,25 +38,25 @@ export default function EditarCuentaPage() {
 
       if (!idCliente) {
         setErrorMensaje(
-          "No se pudo identificar al usuario. Vuelve a iniciar sesión."
+          "No se pudo identificar al usuario. Vuelve a iniciar sesiÃ³n."
         );
         setCargando(false);
         return;
       }
 
-      fetch(`http://localhost:8080/api/clientes/${idCliente}`)
+      fetch(`${API}/clientes/${idCliente}`)
         .then(async (res) => {
           const data = await res.json();
           if (!res.ok) {
             const mensajeError =
               data?.mensaje ||
-              `Error al obtener datos del cliente (Código ${res.status})`;
+              `Error al obtener datos del cliente (CÃ³digo ${res.status})`;
             throw new Error(mensajeError);
           }
           return data;
         })
         .then((data) => {
-          // Inicializar el campo contrasena como cadena vacía para el input
+          // Inicializar el campo contrasena como cadena vacÃ­a para el input
           setCliente({ ...data, contrasena: "" });
         })
         .catch((error) => {
@@ -100,7 +101,7 @@ export default function EditarCuentaPage() {
       }
 
       const res = await fetch(
-        `http://localhost:8080/api/clientes/${cliente.idCliente}`,
+        `${API}/clientes/${cliente.idCliente}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -114,7 +115,7 @@ export default function EditarCuentaPage() {
         throw new Error(mensajeError);
       }
 
-      // Actualizar localStorage con el nuevo nombre (si cambió)
+      // Actualizar localStorage con el nuevo nombre (si cambiÃ³)
       const storedUser = localStorage.getItem("usuario");
       if (storedUser) {
         const user = JSON.parse(storedUser);
@@ -122,22 +123,22 @@ export default function EditarCuentaPage() {
         localStorage.setItem("usuario", JSON.stringify(user));
       }
 
-      alert("✅ Datos actualizados correctamente.");
+      alert("âœ… Datos actualizados correctamente.");
 
-      // Limpiar el campo de contraseña en el estado después del éxito
+      // Limpiar el campo de contraseÃ±a en el estado despuÃ©s del Ã©xito
       setCliente((prev) => (prev ? { ...prev, contrasena: "" } : null));
 
-      // Redirección al inicio
+      // RedirecciÃ³n al inicio
       router.push("/");
     } catch (error: any) {
       console.error("Error al actualizar:", error);
-      setErrorMensaje(error.message || "No se pudo actualizar la información.");
+      setErrorMensaje(error.message || "No se pudo actualizar la informaciÃ³n.");
     } finally {
       setGuardando(false);
     }
   };
 
-  // Manejador para el botón de volver
+  // Manejador para el botÃ³n de volver
   const handleVolver = () => {
     router.push("/");
   };
@@ -153,7 +154,7 @@ export default function EditarCuentaPage() {
     );
 
   return (
-    // 🆕 CORRECCIÓN DE ESTILO: Eliminamos la altura mínima forzada
+    // ðŸ†• CORRECCIÃ“N DE ESTILO: Eliminamos la altura mÃ­nima forzada
     // (min-h-[...]) para acercar el formulario al footer.
     <div className="flex justify-center items-start pt-10">
       <div className="w-full max-w-md bg-white shadow-xl rounded-lg p-6">
@@ -189,12 +190,12 @@ export default function EditarCuentaPage() {
 
           <div>
             <label className="block text-gray-700 font-semibold mb-1">
-              Nueva Contraseña (opcional)
+              Nueva ContraseÃ±a (opcional)
             </label>
             <input
               type="password"
               name="contrasena"
-              placeholder="Dejar vacío para no cambiar"
+              placeholder="Dejar vacÃ­o para no cambiar"
               value={cliente.contrasena || ""}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-3 py-2"
@@ -210,7 +211,7 @@ export default function EditarCuentaPage() {
           </button>
         </form>
 
-        {/* Botón de volver al inicio */}
+        {/* BotÃ³n de volver al inicio */}
         <button
           onClick={handleVolver}
           className="w-full mt-3 bg-gray-400 text-white py-2 rounded-lg font-semibold hover:bg-gray-500 transition"
@@ -221,3 +222,4 @@ export default function EditarCuentaPage() {
     </div>
   );
 }
+

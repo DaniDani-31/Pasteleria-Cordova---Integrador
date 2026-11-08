@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-const API = "http://localhost:8080/api";
 
 interface Producto {
   idProducto: number;
@@ -106,7 +106,7 @@ export default function AdministrarProductosPage() {
   };
 
   // ==========================================
-  // ABRIR EDICIÓN
+  // ABRIR EDICIÃ“N
   // ==========================================
   const editarProducto = (producto: Producto) => {
     setFormulario({
@@ -165,7 +165,7 @@ export default function AdministrarProductosPage() {
       !Number.isInteger(stock) ||
       stock < 0
     ) {
-      setError("Ingresa un stock inicial válido (entero y no negativo).");
+      setError("Ingresa un stock inicial vÃ¡lido (entero y no negativo).");
       return;
     }
 
@@ -216,7 +216,7 @@ export default function AdministrarProductosPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Ocurrió un error al guardar el producto.",
+          : "OcurriÃ³ un error al guardar el producto.",
       );
     } finally {
       setGuardando(false);
@@ -241,11 +241,11 @@ export default function AdministrarProductosPage() {
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">
-            Gestión de Productos
+            GestiÃ³n de Productos
           </h1>
 
           <p className="mt-1 text-gray-600">
-            Administra los productos de Pastelerías Córdova.
+            Administra los productos de PastelerÃ­as CÃ³rdova.
           </p>
         </div>
 
@@ -254,7 +254,7 @@ export default function AdministrarProductosPage() {
             onClick={() => router.push("/")}
             className="rounded-lg bg-gray-600 px-5 py-2.5 font-semibold text-white hover:bg-gray-700"
           >
-            ← Volver al inicio
+            â† Volver al inicio
           </button>
 
           <button
@@ -269,7 +269,7 @@ export default function AdministrarProductosPage() {
             disabled={loading}
             className="rounded-lg bg-amber-700 px-5 py-2.5 font-semibold text-white hover:bg-amber-800 disabled:opacity-50"
           >
-            ↻ Actualizar
+            â†» Actualizar
           </button>
         </div>
       </div>
@@ -305,7 +305,7 @@ export default function AdministrarProductosPage() {
               onClick={cerrarFormulario}
               className="text-gray-500 hover:text-red-600"
             >
-              ✕ Cerrar
+              âœ• Cerrar
             </button>
           </div>
 
@@ -345,13 +345,13 @@ export default function AdministrarProductosPage() {
 
             <div className="md:col-span-2">
               <label className="mb-2 block font-semibold text-gray-700">
-                Descripción
+                DescripciÃ³n
               </label>
 
               <textarea
                 value={formulario.descripcion}
                 onChange={(e) => actualizarCampo("descripcion", e.target.value)}
-                placeholder="Describe las características del producto..."
+                placeholder="Describe las caracterÃ­sticas del producto..."
                 rows={3}
                 className="w-full rounded-lg border p-3"
               />
@@ -446,7 +446,7 @@ export default function AdministrarProductosPage() {
                 <th className="p-4">Producto</th>
                 <th className="p-4">Precio</th>
                 <th className="p-4">Stock</th>
-                <th className="p-4">Costo de producción</th>
+                <th className="p-4">Costo de producciÃ³n</th>
                 <th className="p-4 text-center">Acciones</th>
               </tr>
             </thead>
@@ -484,7 +484,7 @@ export default function AdministrarProductosPage() {
                       onClick={() => editarProducto(producto)}
                       className="rounded-lg bg-blue-100 px-4 py-2 font-semibold text-blue-800 hover:bg-blue-200"
                     >
-                      ✏️ Editar
+                      âœï¸ Editar
                     </button>
                   </td>
                 </tr>
@@ -504,3 +504,5 @@ export default function AdministrarProductosPage() {
     </div>
   );
 }
+
+

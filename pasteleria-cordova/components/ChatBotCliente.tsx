@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useEffect, useState } from "react";
 
@@ -24,7 +25,7 @@ export default function ChatbotCliente() {
     {
       tipo: "bot",
       texto:
-        "¡Hola! 👋 Bienvenido a Pastelería Córdova. ¿En qué puedo ayudarte?",
+        "Â¡Hola! ðŸ‘‹ Bienvenido a PastelerÃ­a CÃ³rdova. Â¿En quÃ© puedo ayudarte?",
     },
   ]);
 
@@ -75,7 +76,7 @@ export default function ChatbotCliente() {
         setEsCliente(true);
 
         // Cargar productos
-        fetch("http://localhost:8080/api/productos")
+        fetch(`${API}/productos`)
           .then((respuesta) => {
             if (!respuesta.ok) {
               throw new Error("No se pudieron obtener los productos");
@@ -101,7 +102,7 @@ export default function ChatbotCliente() {
       }
     };
 
-    // Primera comprobación
+    // Primera comprobaciÃ³n
     verificarUsuario();
 
     // Escuchar cambios de usuario
@@ -124,14 +125,14 @@ export default function ChatbotCliente() {
     if (
       pregunta.includes("hola") ||
       pregunta.includes("buenas") ||
-      pregunta.includes("buenos días") ||
+      pregunta.includes("buenos dÃ­as") ||
       pregunta.includes("buenos dias") ||
       pregunta.includes("buenas tardes") ||
       pregunta.includes("buenas noches")
     ) {
-      return `¡Hola${
+      return `Â¡Hola${
         usuario?.nombreCompleto ? ` ${usuario.nombreCompleto}` : ""
-      }! 👋 ¿En qué puedo ayudarte?`;
+      }! ðŸ‘‹ Â¿En quÃ© puedo ayudarte?`;
     }
 
     // ==========================================
@@ -140,23 +141,23 @@ export default function ChatbotCliente() {
     if (
       pregunta.includes("producto") ||
       pregunta.includes("productos") ||
-      pregunta.includes("qué venden") ||
+      pregunta.includes("quÃ© venden") ||
       pregunta.includes("que venden") ||
-      pregunta.includes("catálogo") ||
+      pregunta.includes("catÃ¡logo") ||
       pregunta.includes("catalogo")
     ) {
       if (productos.length === 0) {
-        return "🍰 En este momento no pude obtener nuestro catálogo. Intenta nuevamente en unos segundos.";
+        return "ðŸ° En este momento no pude obtener nuestro catÃ¡logo. Intenta nuevamente en unos segundos.";
       }
 
       const listaProductos = productos
         .map(
           (producto) =>
-            `• ${producto.nombreProducto} - S/ ${producto.precio.toFixed(2)}`,
+            `â€¢ ${producto.nombreProducto} - S/ ${producto.precio.toFixed(2)}`,
         )
         .join("\n");
 
-      return `🍰 Estos son nuestros productos disponibles:\n\n${listaProductos}`;
+      return `ðŸ° Estos son nuestros productos disponibles:\n\n${listaProductos}`;
     }
 
     // ==========================================
@@ -165,13 +166,13 @@ export default function ChatbotCliente() {
     if (
       pregunta.includes("precio") ||
       pregunta.includes("precios") ||
-      pregunta.includes("cuánto cuesta") ||
+      pregunta.includes("cuÃ¡nto cuesta") ||
       pregunta.includes("cuanto cuesta") ||
-      pregunta.includes("cuánto vale") ||
+      pregunta.includes("cuÃ¡nto vale") ||
       pregunta.includes("cuanto vale")
     ) {
       if (productos.length === 0) {
-        return "💰 No pude consultar los precios en este momento. Intenta nuevamente.";
+        return "ðŸ’° No pude consultar los precios en este momento. Intenta nuevamente.";
       }
 
       const productoEncontrado = productos.find((producto) =>
@@ -179,12 +180,12 @@ export default function ChatbotCliente() {
       );
 
       if (productoEncontrado) {
-        return `💰 El ${productoEncontrado.nombreProducto} cuesta S/ ${productoEncontrado.precio.toFixed(
+        return `ðŸ’° El ${productoEncontrado.nombreProducto} cuesta S/ ${productoEncontrado.precio.toFixed(
           2,
         )}.`;
       }
 
-      return "💰 Puedo consultar el precio de nuestros productos. Indícame el nombre del producto que deseas consultar.";
+      return "ðŸ’° Puedo consultar el precio de nuestros productos. IndÃ­came el nombre del producto que deseas consultar.";
     }
 
     // ==========================================
@@ -197,7 +198,7 @@ export default function ChatbotCliente() {
       pregunta.includes("hay")
     ) {
       if (productos.length === 0) {
-        return "📦 No pude consultar la disponibilidad en este momento.";
+        return "ðŸ“¦ No pude consultar la disponibilidad en este momento.";
       }
 
       const productoEncontrado = productos.find((producto) =>
@@ -206,15 +207,15 @@ export default function ChatbotCliente() {
 
       if (productoEncontrado) {
         if (productoEncontrado.stock > 0) {
-          return `📦 Sí, tenemos ${productoEncontrado.nombreProducto} disponible.\n\n💰 Precio: S/ ${productoEncontrado.precio.toFixed(
+          return `ðŸ“¦ SÃ­, tenemos ${productoEncontrado.nombreProducto} disponible.\n\nðŸ’° Precio: S/ ${productoEncontrado.precio.toFixed(
             2,
-          )}\n📦 Stock disponible: ${productoEncontrado.stock} unidades.`;
+          )}\nðŸ“¦ Stock disponible: ${productoEncontrado.stock} unidades.`;
         }
 
-        return `❌ Actualmente no tenemos ${productoEncontrado.nombreProducto} disponible.`;
+        return `âŒ Actualmente no tenemos ${productoEncontrado.nombreProducto} disponible.`;
       }
 
-      return "📦 Indícame el nombre del producto y puedo consultar su disponibilidad.";
+      return "ðŸ“¦ IndÃ­came el nombre del producto y puedo consultar su disponibilidad.";
     }
 
     // ==========================================
@@ -225,14 +226,14 @@ export default function ChatbotCliente() {
       pregunta.includes("comprar") ||
       pregunta.includes("compra")
     ) {
-      return "🛒 Puedes agregar los productos que deseas al carrito y posteriormente realizar tu compra.";
+      return "ðŸ›’ Puedes agregar los productos que deseas al carrito y posteriormente realizar tu compra.";
     }
 
     // ==========================================
     // PEDIDO
     // ==========================================
     if (pregunta.includes("pedido") || pregunta.includes("orden")) {
-      return "📦 Puedes consultar el estado de tus pedidos desde la sección Historial de Compras.";
+      return "ðŸ“¦ Puedes consultar el estado de tus pedidos desde la secciÃ³n Historial de Compras.";
     }
 
     // ==========================================
@@ -243,11 +244,11 @@ export default function ChatbotCliente() {
       pregunta.includes("compras anteriores") ||
       pregunta.includes("mis compras")
     ) {
-      return "🧾 Puedes consultar tus compras anteriores ingresando a Historial de Compras.";
+      return "ðŸ§¾ Puedes consultar tus compras anteriores ingresando a Historial de Compras.";
     }
 
     // ==========================================
-    // MÉTODOS DE PAGO
+    // MÃ‰TODOS DE PAGO
     // ==========================================
     if (
       pregunta.includes("pago") ||
@@ -256,19 +257,19 @@ export default function ChatbotCliente() {
       pregunta.includes("plin") ||
       pregunta.includes("tarjeta")
     ) {
-      return "💳 Puedes revisar los métodos de pago disponibles durante el proceso de compra.";
+      return "ðŸ’³ Puedes revisar los mÃ©todos de pago disponibles durante el proceso de compra.";
     }
 
     // ==========================================
-    // INFORMACIÓN DE LA PASTELERÍA
+    // INFORMACIÃ“N DE LA PASTELERÃA
     // ==========================================
     if (
-      pregunta.includes("información") ||
+      pregunta.includes("informaciÃ³n") ||
       pregunta.includes("informacion") ||
-      pregunta.includes("pastelería") ||
+      pregunta.includes("pastelerÃ­a") ||
       pregunta.includes("pasteleria")
     ) {
-      return "🏪 Somos Pastelería Córdova. Puedes navegar por nuestro catálogo para conocer nuestros productos y realizar tus pedidos.";
+      return "ðŸª Somos PastelerÃ­a CÃ³rdova. Puedes navegar por nuestro catÃ¡logo para conocer nuestros productos y realizar tus pedidos.";
     }
 
     // ==========================================
@@ -277,47 +278,47 @@ export default function ChatbotCliente() {
     if (
       pregunta.includes("asesor") ||
       pregunta.includes("persona") ||
-      pregunta.includes("atención") ||
+      pregunta.includes("atenciÃ³n") ||
       pregunta.includes("atencion") ||
       pregunta.includes("ayuda")
     ) {
-      return "👨‍💼 Claro. Si necesitas atención personalizada, puedes comunicarte con uno de nuestros asesores mediante WhatsApp.";
+      return "ðŸ‘¨â€ðŸ’¼ Claro. Si necesitas atenciÃ³n personalizada, puedes comunicarte con uno de nuestros asesores mediante WhatsApp.";
     }
 
     // ==========================================
     // GRACIAS
     // ==========================================
     if (pregunta.includes("gracias") || pregunta.includes("muchas gracias")) {
-      return "😊 ¡Con mucho gusto! Estamos para ayudarte.";
+      return "ðŸ˜Š Â¡Con mucho gusto! Estamos para ayudarte.";
     }
 
     // ==========================================
     // DESPEDIDA
     // ==========================================
     if (
-      pregunta.includes("adiós") ||
+      pregunta.includes("adiÃ³s") ||
       pregunta.includes("adios") ||
       pregunta.includes("chau")
     ) {
-      return "👋 ¡Gracias por visitar Pastelería Córdova!";
+      return "ðŸ‘‹ Â¡Gracias por visitar PastelerÃ­a CÃ³rdova!";
     }
 
     // ==========================================
     // RESPUESTA POR DEFECTO
     // ==========================================
-    return "🤔 No estoy seguro de haber entendido tu consulta. Puedes preguntarme sobre productos, precios, disponibilidad, carrito, pedidos, historial de compras o métodos de pago.";
+    return "ðŸ¤” No estoy seguro de haber entendido tu consulta. Puedes preguntarme sobre productos, precios, disponibilidad, carrito, pedidos, historial de compras o mÃ©todos de pago.";
   };
 
   // ==========================================
   // CONTACTAR CON UN ASESOR POR WHATSAPP
   // ==========================================
   const contactarAsesor = () => {
-    const numeroAsesor = "51962062153"; // Reemplazar por el número real
+    const numeroAsesor = "51962062153"; // Reemplazar por el nÃºmero real
 
     const texto = encodeURIComponent(
       `Hola, soy ${
         usuario?.nombreCompleto || "cliente"
-      }. Necesito ayuda de un asesor de Pastelería Córdova.`,
+      }. Necesito ayuda de un asesor de PastelerÃ­a CÃ³rdova.`,
     );
 
     const url = `https://wa.me/${51962062153}?text=${texto}`;
@@ -366,7 +367,7 @@ export default function ChatbotCliente() {
   };
 
   // ==========================================
-  // VERIFICACIÓN DEL USUARIO
+  // VERIFICACIÃ“N DEL USUARIO
   // ==========================================
   if (verificandoUsuario) {
     return null;
@@ -381,13 +382,13 @@ export default function ChatbotCliente() {
   // ==========================================
   return (
     <>
-      {/* BOTÓN FLOTANTE */}
+      {/* BOTÃ“N FLOTANTE */}
       <button
         onClick={() => setAbierto(!abierto)}
         className="fixed bottom-6 right-6 z-50 bg-primary text-white w-16 h-16 rounded-full shadow-lg hover:scale-105 transition"
         aria-label="Abrir chatbot"
       >
-        🤖
+        ðŸ¤–
       </button>
 
       {/* VENTANA DEL CHAT */}
@@ -396,16 +397,16 @@ export default function ChatbotCliente() {
           {/* CABECERA */}
           <div className="bg-primary text-white px-4 py-3 flex justify-between items-center">
             <div>
-              <h2 className="font-bold">🤖 Asistente Córdova</h2>
+              <h2 className="font-bold">ðŸ¤– Asistente CÃ³rdova</h2>
 
-              <p className="text-xs opacity-90">Atención al cliente</p>
+              <p className="text-xs opacity-90">AtenciÃ³n al cliente</p>
             </div>
 
             <button
               onClick={() => setAbierto(false)}
               className="text-white text-xl"
             >
-              ×
+              Ã—
             </button>
           </div>
 
@@ -431,28 +432,28 @@ export default function ChatbotCliente() {
             ))}
           </div>
 
-          {/* OPCIONES RÁPIDAS */}
+          {/* OPCIONES RÃPIDAS */}
           <div className="px-3 py-2 border-t bg-white">
             <div className="flex gap-2 overflow-x-auto pb-2">
               <button
                 onClick={() => setMensaje("Quiero ver los productos")}
                 className="whitespace-nowrap text-xs bg-gray-100 px-3 py-2 rounded-full hover:bg-gray-200"
               >
-                🍰 Productos
+                ðŸ° Productos
               </button>
 
               <button
                 onClick={() => setMensaje("Quiero consultar mi pedido")}
                 className="whitespace-nowrap text-xs bg-gray-100 px-3 py-2 rounded-full hover:bg-gray-200"
               >
-                📦 Mi pedido
+                ðŸ“¦ Mi pedido
               </button>
 
               <button
                 onClick={contactarAsesor}
                 className="whitespace-nowrap text-xs bg-green-100 text-green-800 px-3 py-2 rounded-full hover:bg-green-200"
               >
-                💬 Contactar con un Asesor
+                ðŸ’¬ Contactar con un Asesor
               </button>
             </div>
 
@@ -471,7 +472,7 @@ export default function ChatbotCliente() {
                 onClick={enviarMensaje}
                 className="bg-primary text-white px-4 rounded-lg hover:opacity-90"
               >
-                ➤
+                âž¤
               </button>
             </div>
           </div>
@@ -480,3 +481,4 @@ export default function ChatbotCliente() {
     </>
   );
 }
+

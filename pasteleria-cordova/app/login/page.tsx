@@ -1,4 +1,5 @@
-"use client";
+﻿"use client";
+import { API } from "@/lib/api";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -20,7 +21,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/clientes/login", {
+      const response = await fetch(`${API}/clientes/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +35,7 @@ export default function LoginPage() {
       if (!response.ok) {
         toast({
           title: "Error",
-          description: "Correo o contraseña incorrectos ❌",
+          description: "Correo o contraseÃ±a incorrectos âŒ",
           variant: "destructive",
         });
         return;
@@ -49,7 +50,7 @@ export default function LoginPage() {
       if (!usuario || !usuario.nombreCompleto) {
         toast({
           title: "Error",
-          description: data.mensaje || "Datos de usuario inválidos ❌",
+          description: data.mensaje || "Datos de usuario invÃ¡lidos âŒ",
           variant: "destructive",
         });
         return;
@@ -78,7 +79,7 @@ export default function LoginPage() {
 
         toast({
           title: "Error",
-          description: "No se pudo determinar el rol del usuario ❌",
+          description: "No se pudo determinar el rol del usuario âŒ",
           variant: "destructive",
         });
 
@@ -116,12 +117,12 @@ export default function LoginPage() {
       window.dispatchEvent(new Event("usuarioActualizado"));
 
       toast({
-        title: "Inicio de sesión exitoso ✅",
+        title: "Inicio de sesiÃ³n exitoso âœ…",
         description: `Bienvenido ${usuario.nombreCompleto}`,
       });
 
       // =====================================================
-      // REDIRECCIÓN SEGÚN EL ROL
+      // REDIRECCIÃ“N SEGÃšN EL ROL
       // =====================================================
 
       setTimeout(() => {
@@ -131,7 +132,7 @@ export default function LoginPage() {
       console.error("Error en el login:", error);
 
       toast({
-        title: "Error de conexión ⚠️",
+        title: "Error de conexiÃ³n âš ï¸",
         description: "No se pudo conectar con el servidor",
         variant: "destructive",
       });
@@ -143,7 +144,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md border-4 border-muted shadow-xl">
         <CardHeader className="text-center space-y-4">
           <CardTitle className="text-2xl font-bold text-foreground">
-            INICIO DE SESIÓN
+            INICIO DE SESIÃ“N
           </CardTitle>
         </CardHeader>
 
@@ -151,7 +152,7 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* CORREO */}
             <div className="space-y-2">
-              <Label htmlFor="email">Correo Electrónico:</Label>
+              <Label htmlFor="email">Correo ElectrÃ³nico:</Label>
 
               <Input
                 id="email"
@@ -162,9 +163,9 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* CONTRASEÑA */}
+            {/* CONTRASEÃ‘A */}
             <div className="space-y-2">
-              <Label htmlFor="password">Contraseña:</Label>
+              <Label htmlFor="password">ContraseÃ±a:</Label>
 
               <Input
                 id="password"
@@ -175,12 +176,12 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* INICIAR SESIÓN */}
+            {/* INICIAR SESIÃ“N */}
             <Button
               type="submit"
               className="w-full bg-primary hover:bg-accent text-primary-foreground font-semibold py-6 text-lg"
             >
-              Iniciar Sesión
+              Iniciar SesiÃ³n
             </Button>
 
             {/* REGISTRO */}
@@ -199,3 +200,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
