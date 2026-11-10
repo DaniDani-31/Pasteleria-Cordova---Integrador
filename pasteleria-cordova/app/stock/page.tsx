@@ -121,7 +121,7 @@ export default function StockPage() {
             const inventario: InventarioML = await inventarioResponse.json();
 
             // -------------------------------------------------
-            // 3. Obtener optimizaciÃ³n de reposiciÃ³n
+            // 3. Obtener optimizacion de reposicion
             // -------------------------------------------------
 
             const optimizacionResponse = await fetch(
@@ -165,7 +165,7 @@ export default function StockPage() {
   };
 
   // =========================================================
-  // CARGAR INFORMACIÃ“N INICIAL
+  // CARGAR INFORMACION INICIAL
   // =========================================================
 
   useEffect(() => {
@@ -242,7 +242,7 @@ export default function StockPage() {
       if (response.ok) {
         alert(`Stock actualizado para ${producto.nombreProducto}`);
 
-        // Volver a calcular el anÃ¡lisis ML
+        // Volver a calcular el analisis ML
         await cargarAnalisisML(productos);
       } else {
         alert("Error al actualizar stock");
@@ -282,7 +282,7 @@ export default function StockPage() {
   if (loading) {
     return (
       <div className="p-6">
-        <h1 className="text-3xl font-bold mb-6">ðŸ“¦ Control de Stock</h1>
+        <h1 className="text-3xl font-bold mb-6">Control de Stock</h1>
 
         <p className="text-lg">Cargando productos...</p>
       </div>
@@ -305,10 +305,10 @@ export default function StockPage() {
       ===================================================== */}
 
       <div className="mb-6">
-        <h1 className="text-3xl font-bold">ðŸ“¦ Control de Stock</h1>
+        <h1 className="text-3xl font-bold">Control de Stock</h1>
 
         <p className="text-gray-600 mt-1">
-          GestiÃ³n de inventario y anÃ¡lisis inteligente
+          Gestión de inventario y análisis inteligente
         </p>
       </div>
 
@@ -360,7 +360,7 @@ export default function StockPage() {
       {loadingML && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <p className="text-blue-700">
-            ðŸ¤– Analizando demanda e inventario con Machine Learning...
+            Analizando demanda e inventario con Machine Learning...
           </p>
         </div>
       )}
@@ -385,7 +385,7 @@ export default function StockPage() {
 
               <th className="p-3 border">Estado</th>
 
-              <th className="p-3 border">ReposiciÃ³n sugerida</th>
+              <th className="p-3 border">Reposicion sugerida</th>
 
               <th className="p-3 border">Actualizar</th>
             </tr>
@@ -420,14 +420,14 @@ export default function StockPage() {
                         onClick={() => disminuir(producto.idProducto)}
                         className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
                       >
-                        âž–
+                        –
                       </button>
 
                       <button
                         onClick={() => aumentar(producto.idProducto)}
                         className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
                       >
-                        âž•
+                        +
                       </button>
                     </div>
                   </td>
@@ -460,7 +460,7 @@ export default function StockPage() {
                         </span>
 
                         <p className="text-xs text-gray-500">
-                          relaciÃ³n stock/demanda
+                          relacion stock/demanda
                         </p>
                       </div>
                     ) : (
@@ -540,10 +540,9 @@ export default function StockPage() {
           onClick={() => router.push("/")}
           className="text-primary border-primary hover:bg-primary hover:text-white transition"
         >
-          â¬…ï¸ Volver al inicio
+          Volver al inicio
         </Button>
       </div>
     </div>
   );
 }
-

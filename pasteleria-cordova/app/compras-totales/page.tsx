@@ -65,18 +65,15 @@ export default function ComprasTotalesPage() {
     nuevoEstado: string,
   ) => {
     try {
-      const res = await fetch(
-        `${API}/compras/${idCompra}/estado`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            estado: nuevoEstado,
-          }),
+      const res = await fetch(`${API}/compras/${idCompra}/estado`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          estado: nuevoEstado,
+        }),
+      });
 
       if (!res.ok) {
         const mensaje = await res.text();
@@ -129,21 +126,21 @@ export default function ComprasTotalesPage() {
   };
 
   // ============================
-  // TEXTO DEL BOTÃ“N
+  // TEXTO DEL BOTON
   // ============================
   const textoSiguienteEstado = (estado: string) => {
     switch (estado) {
       case "Pendiente":
-        return "âœ“ Confirmar pedido";
+        return "Confirmar pedido";
 
       case "Confirmado":
-        return "ðŸ‘¨â€ðŸ³ Iniciar preparaciÃ³n";
+        return "Iniciar preparacion";
 
       case "Preparando":
-        return "ðŸ“¦ Marcar como listo";
+        return "Marcar como listo";
 
       case "Listo":
-        return "ðŸŽ‰ Marcar entregado";
+        return "Marcar entregado";
 
       default:
         return "";
@@ -250,19 +247,19 @@ export default function ComprasTotalesPage() {
       {/* ============================
           TÃTULO
       ============================ */}
-      <h1 className="text-3xl font-bold mb-5">ðŸ“Š Compras Totales</h1>
+      <h1 className="text-3xl font-bold mb-5">Compras Totales</h1>
 
       {/* ============================
           ESTADÃSTICAS
       ============================ */}
       <div className="flex gap-6 bg-gray-100 p-4 rounded-lg shadow mb-5">
         <div className="text-lg font-semibold">
-          ðŸ§¾ Total de compras registradas:{" "}
+          Total de compras registradas:{" "}
           <span className="text-blue-700">{totalCompras}</span>
         </div>
 
         <div className="text-lg font-semibold">
-          ðŸ’° Suma total de compras:{" "}
+          Suma total de compras:{" "}
           <span className="text-green-700">S/ {sumaTotal.toFixed(2)}</span>
         </div>
       </div>
@@ -272,11 +269,11 @@ export default function ComprasTotalesPage() {
       ============================ */}
       <div className="flex gap-4 mb-5">
         <Button onClick={exportarExcel} className="bg-green-700 text-white">
-          ðŸ“— Exportar Excel
+          Exportar Excel
         </Button>
 
         <Button onClick={exportarPDF} className="bg-red-700 text-white">
-          ðŸ“• Exportar PDF
+          Exportar PDF
         </Button>
       </div>
 
@@ -357,7 +354,7 @@ export default function ComprasTotalesPage() {
                           }}
                           className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
                         >
-                          âŒ Cancelar
+                          Cancelar
                         </button>
                       )}
                     </div>
@@ -377,11 +374,10 @@ export default function ComprasTotalesPage() {
             onClick={() => router.push("/")}
             className="text-primary border-primary hover:bg-primary hover:text-white transition"
           >
-            â¬…ï¸ Volver al inicio
+            Volver al inicio
           </Button>
         </div>
       </div>
     </div>
   );
 }
-

@@ -17,14 +17,14 @@ export default function Home() {
     {
       idProducto: 1,
       name: "Torta de Chocolate",
-      description: "La clÃ¡sica con tres capas de puro sabor",
+      description: "La clasica con tres capas de puro sabor",
       price: "S/ 40.00",
       image: "/chocolate-cake-with-three-layers.jpg",
     },
     {
       idProducto: 2,
       name: "Muffin de Vainilla",
-      description: "Suave y esponjoso, perfecto para el cafÃ©",
+      description: "Suave y esponjoso, perfecto para el cafe",
       price: "S/ 4.00 c/u",
       image: "/vanilla-muffin-golden-brown.jpg",
     },
@@ -38,7 +38,7 @@ export default function Home() {
     {
       idProducto: 4,
       name: "Queque de Zanahoria",
-      description: "Con nueces y betÃºn de queso crema",
+      description: "Con nueces y betun de queso crema",
       price: "S/ 3.00 c/u",
       image: "/carrot-cake-slice-with-cream-cheese-frosting.jpg",
     },
@@ -102,13 +102,13 @@ export default function Home() {
       >
         <img
           src="/logito_cordova.jpeg"
-          alt="Fondo PastelerÃ­a"
+          alt="Fondo Pasteleria"
           className="absolute inset-0 w-full h-full object-cover brightness-75"
         />
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold text-white drop-shadow-lg mb-6">
-            PASTELERÃA CÃ“RDOVA
+            PASTELERIA CORDOVA
           </h1>
         </div>
       </section>
@@ -122,11 +122,11 @@ export default function Home() {
               Sobre Nosotros
             </h2>
             <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
-              Somos una pastelerÃ­a familiar con mÃ¡s de 10 aÃ±os de experiencia,
+              Somos una pasteleria familiar con mas de 10 años de experiencia,
               dedicados a endulzar momentos especiales con postres artesanales y
-              productos de calidad. En PastelerÃ­a CÃ³rdova creemos que cada
-              postre cuenta una historia, y la nuestra estÃ¡ llena de amor,
-              pasiÃ³n y dedicaciÃ³n.
+              productos de calidad. En Pasteleria Cordova creemos que cada
+              postre cuenta una historia, y la nuestra esta llena de amor,
+              pasion y dedicacion.
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg">
               Nuestro objetivo es llevar dulzura a cada hogar, combinando
@@ -155,7 +155,7 @@ export default function Home() {
       <section id="productos" className="py-16 bg-secondary">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12">
-            Nuestros 4 Productos MÃ¡s Vendidos
+            Nuestros 4 Productos Mas Vendidos
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-12">
@@ -177,7 +177,7 @@ export default function Home() {
             onClick={() => (window.location.href = "/productos")}
             className="bg-primary hover:bg-accent text-primary-foreground px-6 py-3 rounded-lg shadow-md transition"
           >
-            Ver MÃ¡s Productos
+            Ver Mas Productos
           </Button>
         </div>
       </section>
@@ -186,10 +186,10 @@ export default function Home() {
       <section id="contacto" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4 text-foreground">
-            ContÃ¡ctanos
+            Contáctanos
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Â¿Tienes alguna pregunta o comentario? Completa el formulario y nos
+            ¿Tienes alguna pregunta o comentario? Completa el formulario y nos
             pondremos en contacto contigo pronto.
           </p>
 
@@ -198,7 +198,7 @@ export default function Home() {
             <div className="space-y-8 text-left">
               <div>
                 <h3 className="text-2xl font-bold mb-6 text-foreground">
-                  InformaciÃ³n de Contacto
+                  Información de Contacto
                 </h3>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -207,7 +207,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg text-foreground">
-                        DirecciÃ³n
+                        Dirección
                       </h4>
                       <p className="text-muted-foreground">
                         Contamos con 4 locales en Lima Sur
@@ -220,7 +220,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg text-foreground">
-                        TelÃ©fono
+                        Telefono
                       </h4>
                       <p className="text-muted-foreground">+51 926 499 245</p>
                     </div>
@@ -243,11 +243,11 @@ export default function Home() {
 
               <div className="bg-secondary/30 p-6 rounded-lg">
                 <h3 className="font-semibold text-lg mb-2 text-foreground">
-                  Horario de AtenciÃ³n
+                  Horario de Atención
                 </h3>
                 <div className="space-y-1 text-muted-foreground">
                   <p>Lunes a Viernes: 10:00 AM - 10:00 PM</p>
-                  <p>SÃ¡bados: 8:00 AM - 12:00 PM</p>
+                  <p>Sábados: 8:00 AM - 12:00 PM</p>
                   <p>Domingos: 8:00 AM - 12:00 PM</p>
                 </div>
               </div>
@@ -256,7 +256,7 @@ export default function Home() {
             {/* Formulario */}
             <div className="bg-card border-4 border-primary/20 rounded-lg p-8 shadow-lg">
               <h3 className="text-2xl font-bold mb-6 text-foreground">
-                EnvÃ­anos un Mensaje
+                Envíanos un Mensaje
               </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -283,7 +283,7 @@ export default function Home() {
                     htmlFor="correo"
                     className="block text-sm font-medium mb-2 text-foreground"
                   >
-                    Correo ElectrÃ³nico
+                    Correo Electrónico
                   </label>
                   <Input
                     id="correo"
@@ -302,7 +302,7 @@ export default function Home() {
                     htmlFor="telefono"
                     className="block text-sm font-medium mb-2 text-foreground"
                   >
-                    TelÃ©fono
+                    Teléfono
                   </label>
                   <Input
                     id="telefono"
@@ -329,7 +329,7 @@ export default function Home() {
                     required
                     value={formData.mensaje}
                     onChange={handleChange}
-                    placeholder="Escribe tu mensaje aquÃ­..."
+                    placeholder="Escribe tu mensaje aquí..."
                     rows={5}
                     className="w-full resize-none"
                   />
@@ -354,7 +354,7 @@ export default function Home() {
           Nuestros Clientes
         </h2>
         <p className="text-muted-foreground mb-12">
-          Ellos confÃ­an en nuestros productos para sus celebraciones.
+          Ellos confían en nuestros productos para sus celebraciones.
         </p>
 
         <div className="flex flex-col md:flex-row justify-center gap-8 max-w-6xl mx-auto px-4">
@@ -363,19 +363,19 @@ export default function Home() {
               name: "Lionel Messi",
               image: "/messi.png",
               review:
-                "Â¡IncreÃ­ble servicio! EncarguÃ© una torta personalizada para el cumpleaÃ±os de mi madre y quedÃ³ preciosa. El sabor era espectacular, todos los invitados preguntaron de dÃ³nde era. Definitivamente volverÃ© a comprar aquÃ­.",
+                "¡Increíble servicio! Encargué una torta personalizada para el cumpleaños de mi madre y quedó preciosa. El sabor era espectacular, todos los invitados preguntaron de dónde era. Definitivamente volveré a comprar aquí.",
             },
             {
               name: "Erling Haaland",
               image: "/haaland.png",
               review:
-                "PedÃ­ un cheesecake de fresas y fue amor a primera vista. La textura, el sabor y la presentaciÃ³n fueron perfectos. Se nota la dedicaciÃ³n que ponen en cada detalle. RecomendadÃ­simo.",
+                "Pedí un cheesecake de fresas y fue amor a primera vista. La textura, el sabor y la presentación fueron perfectos. Se nota la dedicación que ponen en cada detalle. Recomendadísimo.",
             },
             {
               name: "Cristiano Ronaldo",
               image: "/cr7.png",
               review:
-                "Desde que probÃ© sus muffins, no puedo dejar de pasar por la pastelerÃ­a cada semana. Son suaves, deliciosos y siempre frescos. AdemÃ¡s, la atenciÃ³n del personal es muy amable y rÃ¡pida.",
+                "Desde que probé sus muffins, no puedo dejar de pasar por la pastelería cada semana. Son suaves, deliciosos y siempre frescos. Además, la atención del personal es muy amable y rápida.",
             },
           ].map((client, index) => (
             <div
@@ -411,21 +411,21 @@ export default function Home() {
           {[
             {
               name: "VMT 1",
-              address: "JirÃ³n Las Magnolias, VMT 15812",
+              address: "Jiron Las Magnolias, VMT 15812",
               image: "/magnolias.png",
               map: "http://google.com/maps/place/Pasteleria+Cordova/@-12.1428925,-76.9465777,19z/data=!4m15!1m8!3m7!1s0x9105b896a69285bb:0x351ca2644548b817!2sJir%C3%B3n+las+Magnolias+501,+Lima+15812!3b1!8m2!3d-12.1428925!4d-76.945934!16s%2Fg%2F11csm7jb1z!3m5!1s0x9105b896a150a0df:0xfc7a7dee42243642!8m2!3d-12.1426336!4d-76.9458825!16s%2Fg%2F11c5g5r2q7?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D",
             },
             {
               name: "VMT 2",
-              address: "Av. JosÃ© Carlos MariÃ¡tegui 1780, VMT",
+              address: "Av. José Carlos Mariátegui 1780, VMT",
               image: "/mariategui 1.png",
-              map: "https://www.google.com/maps?q=Av.+JosÃ©+Carlos+MariÃ¡tegui+1780,+VMT",
+              map: "https://www.google.com/maps?q=Av.+José+Carlos+Mariátegui+1780,+VMT",
             },
             {
               name: "VMT 3",
-              address: "Av. JosÃ© Carlos MariÃ¡tegui 1090, VMT",
+              address: "Av. José Carlos Mariátegui 1090, VMT",
               image: "/mariategui 2.png",
-              map: "https://www.google.com/maps?q=Av.+JosÃ©+Carlos+MariÃ¡tegui+1090,+VMT",
+              map: "https://www.google.com/maps?q=Av.+José+Carlos+Mariátegui+1090,+VMT",
             },
             {
               name: "Sn. Juan",
@@ -463,4 +463,3 @@ export default function Home() {
     </div>
   );
 }
-

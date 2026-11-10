@@ -17,7 +17,7 @@ interface CompraDTO {
   subtotal: number;
 }
 
-// ðŸ†• Interfaz para la Compra Agrupada (una entidad Compra con una lista de Detalles)
+// Interfaz para la Compra Agrupada (una entidad Compra con una lista de Detalles)
 interface CompraAgrupada {
   idCompra: number;
   total: number;
@@ -51,15 +51,13 @@ export default function HistorialComprasPage() {
     setErrorMensaje("");
 
     try {
-      const res = await fetch(
-        `${API}/compras/cliente/${idCliente}/detalles`,
-      );
+      const res = await fetch(`${API}/compras/cliente/${idCliente}/detalles`);
       const data = await res.json();
 
       if (!res.ok) {
         const mensajeError =
           data?.mensaje ||
-          `Error al cargar el historial (CÃ³digo ${res.status})`;
+          `Error al cargar el historial (Código ${res.status})`;
         throw new Error(mensajeError);
       }
 
@@ -103,7 +101,7 @@ export default function HistorialComprasPage() {
     }
   }, [router, fetchHistorial]);
 
-  // ðŸ†• FUNCIÃ“N DE AGRUPACIÃ“N: Transforma la lista plana de DTOs en compras agrupadas
+  // FUNCIÓN DE AGRUPACIÓN: Transforma la lista plana de DTOs en compras agrupadas
   const agruparCompras = (detallesPlanos: CompraDTO[]): CompraAgrupada[] => {
     const comprasMap = new Map<number, CompraAgrupada>();
 
@@ -266,10 +264,9 @@ export default function HistorialComprasPage() {
           onClick={() => router.push("/")}
           className="text-primary border-primary hover:bg-primary hover:text-white transition"
         >
-          â¬…ï¸ Volver al inicio
+          Volver al inicio
         </Button>
       </div>
     </div>
   );
 }
-

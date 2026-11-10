@@ -19,18 +19,15 @@ export default function RegistroPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        `${API}/clientes/registrar`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            nombreCompleto: nombre,
-            correo: email,
-            contrasena: password,
-          }),
-        }
-      );
+      const response = await fetch(`${API}/clientes/registrar`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombreCompleto: nombre,
+          correo: email,
+          contrasena: password,
+        }),
+      });
 
       // Intentar parsear la respuesta en formato JSON, aunque sea error
       let data: any;
@@ -74,7 +71,7 @@ export default function RegistroPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Correo ElectrÃ³nico:</Label>
+              <Label htmlFor="email">Correo Electronico:</Label>
               <Input
                 id="email"
                 type="email"
@@ -85,7 +82,7 @@ export default function RegistroPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">ContraseÃ±a:</Label>
+              <Label htmlFor="password">Contraseña:</Label>
               <Input
                 id="password"
                 type="password"
@@ -116,4 +113,3 @@ export default function RegistroPage() {
     </div>
   );
 }
-

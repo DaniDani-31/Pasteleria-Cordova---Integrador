@@ -24,10 +24,10 @@ export default function EditarCuentaPage() {
     const storedUser = localStorage.getItem("usuario");
     if (!storedUser) {
       setErrorMensaje(
-        "No se encontrÃ³ sesiÃ³n activa. Redirigiendo a inicio de sesiÃ³n..."
+        "No se encontro sesion activa. Redirigiendo a inicio de sesion...",
       );
       setCargando(false);
-      // Redirigir despuÃ©s de un breve retraso
+      // Redirigir despues de un breve retraso
       const timer = setTimeout(() => router.push("/login"), 3000);
       return () => clearTimeout(timer);
     }
@@ -38,7 +38,7 @@ export default function EditarCuentaPage() {
 
       if (!idCliente) {
         setErrorMensaje(
-          "No se pudo identificar al usuario. Vuelve a iniciar sesiÃ³n."
+          "No se pudo identificar al usuario. Vuelve a iniciar sesion.",
         );
         setCargando(false);
         return;
@@ -50,7 +50,7 @@ export default function EditarCuentaPage() {
           if (!res.ok) {
             const mensajeError =
               data?.mensaje ||
-              `Error al obtener datos del cliente (CÃ³digo ${res.status})`;
+              `Error al obtener datos del cliente (Codigo ${res.status})`;
             throw new Error(mensajeError);
           }
           return data;
@@ -62,7 +62,7 @@ export default function EditarCuentaPage() {
         .catch((error) => {
           console.error("Error al cargar cliente:", error);
           setErrorMensaje(
-            error.message || "Error al cargar los datos del cliente."
+            error.message || "Error al cargar los datos del cliente.",
           );
         })
         .finally(() => setCargando(false));
@@ -100,14 +100,11 @@ export default function EditarCuentaPage() {
         payload.contrasena = nuevaContrasena;
       }
 
-      const res = await fetch(
-        `${API}/clientes/${cliente.idCliente}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
+      const res = await fetch(`${API}/clientes/${cliente.idCliente}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
       const data = await res.json();
       if (!res.ok) {
@@ -132,7 +129,9 @@ export default function EditarCuentaPage() {
       router.push("/");
     } catch (error: any) {
       console.error("Error al actualizar:", error);
-      setErrorMensaje(error.message || "No se pudo actualizar la informaciÃ³n.");
+      setErrorMensaje(
+        error.message || "No se pudo actualizar la informaciÃ³n.",
+      );
     } finally {
       setGuardando(false);
     }
@@ -154,7 +153,7 @@ export default function EditarCuentaPage() {
     );
 
   return (
-    // ðŸ†• CORRECCIÃ“N DE ESTILO: Eliminamos la altura mÃ­nima forzada
+    // CORRECCION DE ESTILO: Eliminamos la altura minima forzada
     // (min-h-[...]) para acercar el formulario al footer.
     <div className="flex justify-center items-start pt-10">
       <div className="w-full max-w-md bg-white shadow-xl rounded-lg p-6">
@@ -190,7 +189,7 @@ export default function EditarCuentaPage() {
 
           <div>
             <label className="block text-gray-700 font-semibold mb-1">
-              Nueva ContraseÃ±a (opcional)
+              Nueva Contraseña (opcional)
             </label>
             <input
               type="password"
@@ -211,7 +210,7 @@ export default function EditarCuentaPage() {
           </button>
         </form>
 
-        {/* BotÃ³n de volver al inicio */}
+        {/* Botón de volver al inicio */}
         <button
           onClick={handleVolver}
           className="w-full mt-3 bg-gray-400 text-white py-2 rounded-lg font-semibold hover:bg-gray-500 transition"
@@ -222,4 +221,3 @@ export default function EditarCuentaPage() {
     </div>
   );
 }
-

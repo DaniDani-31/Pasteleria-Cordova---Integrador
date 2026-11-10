@@ -4,7 +4,6 @@ import { API } from "@/lib/api";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-
 interface Producto {
   idProducto: number;
   nombreProducto: string;
@@ -241,11 +240,11 @@ export default function AdministrarProductosPage() {
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">
-            GestiÃ³n de Productos
+            Gestion de Productos
           </h1>
 
           <p className="mt-1 text-gray-600">
-            Administra los productos de PastelerÃ­as CÃ³rdova.
+            Administra los productos de Pastelerias Cordova.
           </p>
         </div>
 
@@ -254,14 +253,14 @@ export default function AdministrarProductosPage() {
             onClick={() => router.push("/")}
             className="rounded-lg bg-gray-600 px-5 py-2.5 font-semibold text-white hover:bg-gray-700"
           >
-            â† Volver al inicio
+            Volver al inicio
           </button>
 
           <button
             onClick={nuevoProducto}
             className="rounded-lg bg-green-700 px-5 py-2.5 font-semibold text-white hover:bg-green-800"
           >
-            + Nuevo producto
+            Nuevo producto
           </button>
 
           <button
@@ -269,7 +268,7 @@ export default function AdministrarProductosPage() {
             disabled={loading}
             className="rounded-lg bg-amber-700 px-5 py-2.5 font-semibold text-white hover:bg-amber-800 disabled:opacity-50"
           >
-            â†» Actualizar
+            Actualizar
           </button>
         </div>
       </div>
@@ -305,7 +304,7 @@ export default function AdministrarProductosPage() {
               onClick={cerrarFormulario}
               className="text-gray-500 hover:text-red-600"
             >
-              âœ• Cerrar
+              Cerrar
             </button>
           </div>
 
@@ -345,7 +344,7 @@ export default function AdministrarProductosPage() {
 
             <div className="md:col-span-2">
               <label className="mb-2 block font-semibold text-gray-700">
-                DescripciÃ³n
+                Descripcion
               </label>
 
               <textarea
@@ -446,7 +445,7 @@ export default function AdministrarProductosPage() {
                 <th className="p-4">Producto</th>
                 <th className="p-4">Precio</th>
                 <th className="p-4">Stock</th>
-                <th className="p-4">Costo de producciÃ³n</th>
+                <th className="p-4">Costo de produccion</th>
                 <th className="p-4 text-center">Acciones</th>
               </tr>
             </thead>
@@ -484,7 +483,7 @@ export default function AdministrarProductosPage() {
                       onClick={() => editarProducto(producto)}
                       className="rounded-lg bg-blue-100 px-4 py-2 font-semibold text-blue-800 hover:bg-blue-200"
                     >
-                      âœï¸ Editar
+                      Editar
                     </button>
                   </td>
                 </tr>
@@ -504,5 +503,3 @@ export default function AdministrarProductosPage() {
     </div>
   );
 }
-
-

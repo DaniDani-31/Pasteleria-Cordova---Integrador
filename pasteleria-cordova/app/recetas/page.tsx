@@ -4,7 +4,6 @@ import { API } from "@/lib/api";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
-
 interface Ingrediente {
   idInsumo: number;
   nombreInsumo: string;
@@ -441,11 +440,11 @@ export default function RecetasPage() {
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">
-            ðŸ“– GestiÃ³n de Recetas
+            Gestion de Recetas
           </h1>
 
           <p className="mt-1 text-gray-600">
-            Consulta las recetas, ingredientes y costos de producciÃ³n.
+            Consulta las recetas, ingredientes y costos de produccion.
           </p>
         </div>
 
@@ -454,7 +453,7 @@ export default function RecetasPage() {
             onClick={() => router.push("/")}
             className="rounded-lg bg-gray-600 px-5 py-2.5 font-semibold text-white hover:bg-gray-700"
           >
-            â† Volver al Inicio
+            Volver al Inicio
           </button>
 
           <button
@@ -462,7 +461,7 @@ export default function RecetasPage() {
             disabled={cargandoFormulario}
             className="rounded-lg bg-green-700 px-5 py-2.5 font-semibold text-white hover:bg-green-800 disabled:opacity-50"
           >
-            {cargandoFormulario ? "Cargando..." : "+ Nueva Receta"}
+            {cargandoFormulario ? "Cargando..." : " Nueva Receta"}
           </button>
 
           <button
@@ -470,7 +469,7 @@ export default function RecetasPage() {
             disabled={loading}
             className="rounded-lg bg-amber-700 px-5 py-2.5 font-semibold text-white hover:bg-amber-800 disabled:opacity-50"
           >
-            â†» Actualizar
+            Actualizar
           </button>
         </div>
       </div>
@@ -504,7 +503,7 @@ export default function RecetasPage() {
               onClick={limpiarFormulario}
               className="text-gray-500 hover:text-red-600"
             >
-              âœ• Cerrar
+              Cerrar
             </button>
           </div>
 
@@ -573,7 +572,7 @@ export default function RecetasPage() {
           {/* DESCRIPCIÃ“N */}
           <div className="mb-5">
             <label className="mb-2 block font-semibold text-gray-700">
-              DescripciÃ³n
+              Descripcion
             </label>
 
             <textarea
@@ -594,7 +593,7 @@ export default function RecetasPage() {
               onClick={agregarIngrediente}
               className="rounded-lg bg-blue-100 px-4 py-2 font-semibold text-blue-800 hover:bg-blue-200"
             >
-              + Agregar ingrediente
+              Agregar ingrediente
             </button>
           </div>
 
@@ -767,7 +766,7 @@ export default function RecetasPage() {
                   </h3>
 
                   <p className="mt-1 text-sm text-gray-500">
-                    {receta.ingredientes.length} ingredientes Â· Rendimiento:{" "}
+                    {receta.ingredientes.length} ingredientes Rendimiento:{" "}
                     {receta.rendimiento} unidad
                   </p>
                 </div>
@@ -807,7 +806,7 @@ export default function RecetasPage() {
                 disabled={cargandoFormulario}
                 className="mb-4 mt-3 rounded-lg bg-blue-700 px-5 py-2 font-semibold text-white hover:bg-blue-800 disabled:opacity-50"
               >
-                âœï¸ Editar receta
+                Editar receta
               </button>
 
               <p className="mb-4 mt-1 text-sm text-gray-500">
@@ -880,14 +879,14 @@ export default function RecetasPage() {
             </div>
           ) : (
             <div className="rounded-xl bg-white p-10 text-center text-gray-500 shadow">
-              <p className="text-4xl">ðŸ“‹</p>
+              <p className="text-4xl"></p>
 
               <p className="mt-3 font-semibold">
                 Selecciona una receta del listado
               </p>
 
               <p className="mt-1 text-sm">
-                AquÃ­ podrÃ¡s consultar sus ingredientes y costos.
+                Aqui podras consultar sus ingredientes y costos.
               </p>
             </div>
           )}
@@ -896,5 +895,3 @@ export default function RecetasPage() {
     </div>
   );
 }
-
-

@@ -20,23 +20,20 @@ export default function NuevoAdminPage() {
     setError("");
 
     try {
-      // ðŸ”¥ EL ROL 1 SE ASIGNA AUTOMÃTICAMENTE EN EL BACKEND
+      // EL ROL 1 SE ASIGNA AUTOMATICAMENTE EN EL BACKEND
       const nuevoAdmin = {
         nombreCompleto,
         correo,
         contrasena,
       };
 
-      const res = await fetch(
-        `${API}/clientes/registrar-admin`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(nuevoAdmin),
-        }
-      );
+      const res = await fetch(`${API}/clientes/registrar-admin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nuevoAdmin),
+      });
 
       if (!res.ok) {
         // Intentar leer el mensaje de error que envÃ­a Spring Boot
@@ -100,7 +97,7 @@ export default function NuevoAdminPage() {
           </div>
 
           <div>
-            <label className="block font-semibold mb-1">ContraseÃ±a</label>
+            <label className="block font-semibold mb-1">Contraseña</label>
             <input
               type="password"
               value={contrasena}
@@ -118,18 +115,17 @@ export default function NuevoAdminPage() {
           </button>
         </form>
 
-        {/* ðŸ”™ BotÃ³n Volver al inicio */}
+        {/* Botón Volver al inicio */}
         <div className="flex justify-center mt-8">
           <Button
             variant="outline"
             onClick={() => router.push("/")}
             className="text-primary border-primary hover:bg-primary hover:text-white transition"
           >
-            â¬…ï¸ Volver al inicio
+            Volver al inicio
           </Button>
         </div>
       </div>
     </div>
   );
 }
-

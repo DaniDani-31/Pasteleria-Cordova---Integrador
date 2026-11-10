@@ -50,7 +50,7 @@ export default function LoginPage() {
       if (!usuario || !usuario.nombreCompleto) {
         toast({
           title: "Error",
-          description: data.mensaje || "Datos de usuario invÃ¡lidos âŒ",
+          description: data.mensaje || "Datos de usuario invalidos",
           variant: "destructive",
         });
         return;
@@ -117,12 +117,12 @@ export default function LoginPage() {
       window.dispatchEvent(new Event("usuarioActualizado"));
 
       toast({
-        title: "Inicio de sesiÃ³n exitoso âœ…",
+        title: "Inicio de sesion exitoso",
         description: `Bienvenido ${usuario.nombreCompleto}`,
       });
 
       // =====================================================
-      // REDIRECCIÃ“N SEGÃšN EL ROL
+      // REDIRECCION SEGÚN EL ROL
       // =====================================================
 
       setTimeout(() => {
@@ -144,7 +144,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md border-4 border-muted shadow-xl">
         <CardHeader className="text-center space-y-4">
           <CardTitle className="text-2xl font-bold text-foreground">
-            INICIO DE SESIÃ“N
+            INICIO DE SESION
           </CardTitle>
         </CardHeader>
 
@@ -152,7 +152,7 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* CORREO */}
             <div className="space-y-2">
-              <Label htmlFor="email">Correo ElectrÃ³nico:</Label>
+              <Label htmlFor="email">Correo Electrónico:</Label>
 
               <Input
                 id="email"
@@ -163,9 +163,9 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* CONTRASEÃ‘A */}
+            {/* CONTRASEÑA */}
             <div className="space-y-2">
-              <Label htmlFor="password">ContraseÃ±a:</Label>
+              <Label htmlFor="password">Contraseña:</Label>
 
               <Input
                 id="password"
@@ -176,12 +176,12 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* INICIAR SESIÃ“N */}
+            {/* INICIAR SESIÓN */}
             <Button
               type="submit"
               className="w-full bg-primary hover:bg-accent text-primary-foreground font-semibold py-6 text-lg"
             >
-              Iniciar SesiÃ³n
+              Iniciar Sesión
             </Button>
 
             {/* REGISTRO */}
@@ -200,4 +200,3 @@ export default function LoginPage() {
     </div>
   );
 }
-

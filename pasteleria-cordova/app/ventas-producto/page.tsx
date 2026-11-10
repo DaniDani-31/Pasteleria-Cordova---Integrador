@@ -39,9 +39,7 @@ export default function VentasPorProductoPage() {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(
-          `${API}/compras/ventas-producto`,
-        );
+        const res = await fetch(`${API}/compras/ventas-producto`);
 
         if (!res.ok) {
           throw new Error("Error al obtener ventas por producto");
@@ -139,9 +137,7 @@ export default function VentasPorProductoPage() {
 
   const exportPDF = async () => {
     try {
-      const res = await fetch(
-        `${API}/reportes/ventas-producto/pdf`,
-      );
+      const res = await fetch(`${API}/reportes/ventas-producto/pdf`);
 
       if (!res.ok) {
         throw new Error(`Error al descargar PDF: ${res.status}`);
@@ -167,9 +163,7 @@ export default function VentasPorProductoPage() {
 
   const exportExcel = async () => {
     try {
-      const res = await fetch(
-        `${API}/reportes/ventas-producto/excel`,
-      );
+      const res = await fetch(`${API}/reportes/ventas-producto/excel`);
 
       if (!res.ok) {
         throw new Error(`Error al descargar Excel: ${res.status}`);
@@ -217,10 +211,10 @@ export default function VentasPorProductoPage() {
         =================================================== */}
 
         <div className="bg-white p-6 rounded-xl shadow mb-6">
-          <h1 className="text-3xl font-bold mb-2">ðŸ“ˆ Ventas por Producto</h1>
+          <h1 className="text-3xl font-bold mb-2">Ventas por Producto</h1>
 
           <p className="text-gray-600">
-            AnÃ¡lisis de ventas y estimaciÃ³n de demanda
+            Analisis de ventas y estimacion de demanda
           </p>
         </div>
 
@@ -278,14 +272,14 @@ export default function VentasPorProductoPage() {
               onClick={exportPDF}
               className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
             >
-              ðŸ“„ Exportar PDF
+              Exportar PDF
             </button>
 
             <button
               onClick={exportExcel}
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
             >
-              ðŸ“Š Exportar Excel
+              Exportar Excel
             </button>
           </div>
         </div>
@@ -401,11 +395,10 @@ export default function VentasPorProductoPage() {
             onClick={() => router.push("/")}
             className="text-primary border-primary hover:bg-primary hover:text-white transition"
           >
-            â¬…ï¸ Volver al inicio
+            Volver al inicio
           </Button>
         </div>
       </div>
     </div>
   );
 }
-
